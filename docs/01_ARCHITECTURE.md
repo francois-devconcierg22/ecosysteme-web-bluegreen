@@ -1,36 +1,62 @@
-# 01 — ARCHITECTURE BLUEGREEN v6.7 (RÉELLE)
+# 01 — ARCHITECTURE BLUEGREEN (v6.7 validée + trajectoire v8)
 
-## Objectif
-Décrire l’architecture **réellement validée en production**.
+## Rôle
+Décrire l’architecture réellement validée en v6.7 et cadrer la trajectoire industrielle vers v8 multi-stacks.
 
-## Principes structurants
-- Blue / Green strict
-- **1 PROJECT_ID = 1 stack**
-- 1 base de données par stack
-- Isolation totale (containers, réseaux, volumes)
+---
 
-## Traefik
-Deux modes supportés :
-- Traefik embarqué dans la stack
-- Traefik externe mutualisé
+## A. Architecture v6.7 (référence stable)
+### A1. Périmètre
+- Conçue pour : **serveur dédié** OU **périmètre strictement isolé**
+- Hypothèse opérationnelle : **un seul projet Blue/Green sur le serveur**
 
-Les deux sont supportés **sans hypothèse serveur vierge**.
+### A2. Composants
+- 1 stack Blue/Green : services applicatifs + volumes + réseau (préfixés/isolés)
+- 1 Traefik (embarqué ou équivalent du mode v6.7)
+- Scripts d’install/run : orchestrent la création, le démarrage et les checks
 
-## Ce qui a échoué en v7 (et est désormais interdit)
-- Nettoyage serveur global
-- Suppression Docker non ciblée
-- Reconfiguration SSH
-- Hypothèse “serveur vierge permanent”
+### A3. Clé primaire de cohérence
+- `PROJECT_ID` est la clé primaire universelle.
+- Toute ressource non préfixée par `PROJECT_ID` est un **bug**.
 
-## Contrainte clé multi-BlueGreen
-Un serveur peut héberger **N stacks BlueGreen**.
+### A4. Nettoyage (v6.7)
+- Le nettoyage ne doit pas être “global implicite”.
+- En v6.7, le nettoyage acceptable est **scopé au projet** (PROJET_UNIQUE).
 
-Conséquence directe :
-- Aucun script ne doit impacter autre chose que son PROJECT_ID
-- Le ménage global est interdit
-- Le ménage doit être **conditionnel et ciblé**
+---
 
-## Rôle de global.conf
-global.conf est la **seule source de vérité**.
-Les scripts exécutent.  
-Ils ne décident jamais.
+## B. Ce que v6.7 implique concrètement
+### B1. Ce qu’il faut arrêter (interdit)
+- ménage serveur automatique au début du flux standard
+- hypothèse “serveur vierge” non déclarée
+- cleanup implicite (sans mode et sans consentement)
+
+### B2. Ce qu’il faut finaliser (sans refactor massif)
+- Documenter explicitement : “v6.7 suppose serveur dédié OU périmètre isolé”
+- Extraire le ménage global du flux standard : scripts séparés
+- Rendre les opérations destructives explicites : `INSTALL_MODE` + confirmation humaine
+
+---
+
+## C. Trajectoire v8 : Multi-stacks (N projets + 1 Traefik shared)
+### C1. Objectif v8
+- Un serveur peut héberger **N projets** Blue/Green isolés
+- Un Traefik unique “shared” route vers les stacks via labels
+- Aucune action destructrice ne doit dépasser le `PROJECT_ID`
+
+### C2. Principes v8
+- `INSTALL_MODE=MULTI_PROJETS` interdit tout ménage global
+- toutes les ressources sont nommées/préfixées
+- chaque projet a son propre `.env/runtime` (ou équivalent) sans collision
+
+### C3. Conséquence de gouvernance
+- v6.7 reste la base “mono-stack propre”
+- v8 est un chantier distinct : **pas de rétrofit brutal** de v6.7
+
+---
+
+## D. SSH et OS : frontière non négociable
+- Les scripts applicatifs ne doivent pas modifier l’OS hors scripts dédiés.
+- Le ménage applicatif ne doit jamais toucher :
+  - `/home`, `~/.ssh`, `/etc/ssh`, `/root`
+- L’accès SSH ne doit jamais pouvoir être cassé par un “cleanup”.
