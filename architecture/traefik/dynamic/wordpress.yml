@@ -1,0 +1,16 @@
+http:
+  routers:
+    wp:
+      rule: "Host(`{{PRIMARY_DOMAIN}}`)"
+      entryPoints:
+        - websecure
+      service: wp-service
+      tls:
+        certResolver: letsencrypt
+
+  services:
+    wp-service:
+      loadBalancer:
+        servers:
+          - url: "http://wp-blue"
+          - url: "http://wp-green"

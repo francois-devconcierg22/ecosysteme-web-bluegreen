@@ -1,0 +1,111 @@
+==================================================
+ AUDIT DES SCRIPTS GENERATEURS – BLUEGREEN
+ Racine : /home/adminso/bluegreen_v6_3_6/src
+ Date   : Mon Dec 15 14:54:41 UTC 2025
+==================================================
+
+----------------------------------------------
+SCRIPT : ./bg_audit_generators_full.sh
+STATUT : A MODIFIER
+ - SOURCE_TEMPLATE → env_base.env ne doit jamais être source
+ - ENV_SUBST → usage à contrôler strictement
+
+----------------------------------------------
+SCRIPT : ./docker_cleanup_project.sh
+STATUT : OK (aucune action requise)
+
+----------------------------------------------
+SCRIPT : ./run.sh
+STATUT : OK (aucune action requise)
+
+----------------------------------------------
+SCRIPT : ./scripts/apply_wp_config_template.sh
+STATUT : OK (aucune action requise)
+
+----------------------------------------------
+SCRIPT : ./scripts/backup.sh
+STATUT : OK (aucune action requise)
+
+----------------------------------------------
+SCRIPT : ./scripts/backup_db.sh
+STATUT : OK (aucune action requise)
+
+----------------------------------------------
+SCRIPT : ./scripts/backup_files.sh
+STATUT : OK (aucune action requise)
+
+----------------------------------------------
+SCRIPT : ./scripts/backup_rotation.sh
+STATUT : OK (aucune action requise)
+
+----------------------------------------------
+SCRIPT : ./scripts/bg_safe_cleanup.sh
+STATUT : OK (aucune action requise)
+
+----------------------------------------------
+SCRIPT : ./scripts/docker_cleanup_project.sh
+STATUT : OK (aucune action requise)
+
+----------------------------------------------
+SCRIPT : ./scripts/download_wordpress.sh
+STATUT : OK (aucune action requise)
+
+----------------------------------------------
+SCRIPT : ./scripts/generate_passwords.sh
+STATUT : OK (aucune action requise)
+
+----------------------------------------------
+SCRIPT : ./scripts/import_global_conf.sh
+STATUT : OK (aucune action requise)
+
+----------------------------------------------
+SCRIPT : ./scripts/init_bluegreen_structure.sh
+STATUT : OK (aucune action requise)
+
+----------------------------------------------
+SCRIPT : ./scripts/merge_secrets_into_global.sh
+STATUT : OK (aucune action requise)
+
+----------------------------------------------
+SCRIPT : ./scripts/monitoring_wp.sh
+STATUT : OK (aucune action requise)
+
+----------------------------------------------
+SCRIPT : ./scripts/preflight_check.sh
+STATUT : OK (aucune action requise)
+
+----------------------------------------------
+SCRIPT : ./scripts/preflight_full.sh
+STATUT : OK (aucune action requise)
+
+----------------------------------------------
+SCRIPT : ./scripts/reset_wp_permissions.sh
+STATUT : OK (aucune action requise)
+
+----------------------------------------------
+SCRIPT : ./scripts/sentinel.sh
+STATUT : OK (aucune action requise)
+
+----------------------------------------------
+SCRIPT : ./scripts/sentinel_cron_setup.sh
+STATUT : OK (aucune action requise)
+
+----------------------------------------------
+SCRIPT : ./scripts/switch_to_blue.sh
+STATUT : OK (aucune action requise)
+
+----------------------------------------------
+SCRIPT : ./scripts/switch_to_green.sh
+STATUT : OK (aucune action requise)
+
+----------------------------------------------
+SCRIPT : ./scripts/wait_for_db.sh
+STATUT : OK (aucune action requise)
+
+----------------------------------------------
+SCRIPT : ./scripts/wp_auto_install.sh
+STATUT : OK (aucune action requise)
+
+==================================================
+ FIN DE L’AUDIT
+==================================================

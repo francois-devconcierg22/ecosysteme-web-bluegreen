@@ -1,0 +1,38 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: bg-db
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - db_data:/var/lib/mysql
+
+  wp-blue:
+    image: wordpress:php8.2-fpm
+    container_name: wp-blue
+    depends_on: [db]
+    volumes:
+      - ./blue/wp:/var/www/html
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: ${DB_USER}
+      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
+      WORDPRESS_DB_NAME: ${DB_NAME}
+
+  wp-green:
+    image: wordpress:php8.2-fpm
+    container_name: wp-green
+    depends_on: [db]
+    volumes:
+      - ./green/wp:/var/www/html
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: ${DB_USER}
+      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
+      WORDPRESS_DB_NAME: ${DB_NAME}
+
+volumes:
+  db_data:

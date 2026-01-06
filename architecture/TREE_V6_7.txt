@@ -1,0 +1,62 @@
+.
+├── REBUILD_FROM_V67_ONLY.sh
+├── architecture
+│   ├── TREE_V6_7.txt
+│   ├── _env_audit
+│   │   └── generator_audit_report.txt
+│   ├── bg_audit_generators_full.sh
+│   ├── blue
+│   │   └── wp
+│   │       └── wp-content
+│   │           └── uploads
+│   │               └── 2025
+│   │                   └── 12
+│   ├── current_slot
+│   ├── docker-compose.app.yml
+│   ├── docker-compose.traefik.yml
+│   ├── docker_cleanup_project.sh
+│   ├── env_base.env
+│   ├── global.conf
+│   ├── green
+│   │   └── wp
+│   │       └── wp-content
+│   ├── run.sh
+│   ├── traefik
+│   │   ├── dynamic
+│   │   │   └── wordpress.yml
+│   │   └── traefik.yml
+│   └── wp
+├── docs
+│   ├── 00_MASTER_INDEX.md
+│   ├── 01_ARCHITECTURE.md
+│   ├── 02_NORMES_ET_CONVENTIONS.md
+│   ├── 03_GLOBAL_CONF_SPEC.md
+│   ├── 04_CHANGELOG.md
+│   ├── 05_AGENT_GUIDE.md
+│   ├── 06_RELEASE_PROCESS.md
+│   ├── ARCHITECTURE.md
+│   ├── DECISIONS.md
+│   └── RUNBOOK.md
+└── scripts
+    ├── apply_wp_config_template.sh
+    ├── backup.sh
+    ├── backup_db.sh
+    ├── backup_files.sh
+    ├── backup_rotation.sh
+    ├── bg_safe_cleanup.sh
+    ├── docker_cleanup_project.sh
+    ├── generate_passwords.sh
+    ├── import_global_conf.sh
+    ├── init_bluegreen_structure.sh
+    ├── merge_secrets_into_global.sh
+    ├── monitoring_wp.sh
+    ├── preflight_check.sh
+    ├── preflight_full.sh
+    ├── reset_wp_permissions.sh
+    ├── sentinel.sh
+    ├── sentinel_cron_setup.sh
+    ├── switch_to_blue.sh
+    ├── switch_to_green.sh
+    └── wait_for_db.sh
+
+17 directories, 43 files
