@@ -1,17 +1,21 @@
-# 03 — GLOBAL.CONF — SPECIFICATION CANONIQUE
+# 03 — GLOBAL.CONF (SPÉCIFICATION CANONIQUE)
 
 ## Rôle
-Fichier de configuration unique.
+Centraliser **toutes les décisions structurantes**.
 
-## Variables structurantes
+global.conf existe pour :
+- éviter les décisions implicites
+- permettre le multi-BlueGreen
+- rendre les scripts stupides et sûrs
+
+## Variables structurantes validées v6.7 (extrait)
 - PROJECT_ID
-- INSTALL_MODE (SERVEUR_NEUF | STACK_ONLY)
+- INSTALL_MODE
 - DOMAIN_BLUE
 - DOMAIN_GREEN
 - DB_NAME
 - DB_USER
+- DB_PASSWORD
 
-## Règles
-- Variables toujours présentes
-- Valeurs vides autorisées
-- Aucune logique conditionnelle hors script
+## Règle absolue
+Toute variable hors global.conf est interdite.

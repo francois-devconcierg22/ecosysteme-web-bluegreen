@@ -1,22 +1,33 @@
-# 02 — NORMES ET CONVENTIONS (VERROUILLÉ)
+# 02 — NORMES ET CONVENTIONS (DOCUMENT DE VERROUILLAGE)
+
+## Principe méthodologique fondamental
+**Tout ce qui a été découvert par la douleur devient une règle écrite.**
+
+Si ce n’est pas écrit ici,  
+alors ce n’est pas autorisé.
 
 ## Normes techniques
-- PROJECT_ID est obligatoire
-- Aucun nom non préfixé
-- global.conf = source de vérité
-- Aucun script ne décide seul
+- PROJECT_ID est la clé primaire universelle
+- Aucun nom non préfixé = bug
+- Aucune décision dans les scripts
+- global.conf = source de vérité unique
 
-## Norme SSH
-- SSH préparé à l’installation
-- Jamais modifié lors des updates
-- Aucun script ne casse l’accès SSH
+## INSTALL_MODE (obligatoire)
+- SERVER_FRESH : serveur neuf
+- SERVER_EXISTING : serveur avec stacks existantes
 
-## Norme serveur
-- Pas de purge globale
-- Pas de docker system prune automatique
-- Mode SERVEUR_NEUF explicite si nécessaire
+Aucun script ne devine le contexte.
 
-## Norme travail
-- Tout est rejouable
-- Tout est documenté
-- Pas de quick fix
+## Interdictions absolues
+❌ Nettoyage serveur global  
+❌ Suppression Docker non ciblée  
+❌ Modification SSH  
+❌ Hypothèse “serveur vierge”  
+❌ Correctif non documenté  
+
+## Norme de sécurité
+La sécurité minimale v6.7 est validée.
+Toute évolution sécurité doit être :
+- documentée
+- optionnelle
+- rétrocompatible

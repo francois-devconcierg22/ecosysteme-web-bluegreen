@@ -1,26 +1,36 @@
-# 01 — ARCHITECTURE BLUEGREEN v6.7
+# 01 — ARCHITECTURE BLUEGREEN v6.7 (RÉELLE)
 
 ## Objectif
-Décrire l’architecture réellement validée en v6.7.
+Décrire l’architecture **réellement validée en production**.
 
 ## Principes structurants
 - Blue / Green strict
-- 1 PROJECT_ID = 1 stack
-- 1 Traefik par stack (mode standalone)
-- Aucune mutualisation forcée
-- Isolation stricte réseau / volumes
+- **1 PROJECT_ID = 1 stack**
+- 1 base de données par stack
+- Isolation totale (containers, réseaux, volumes)
 
-## Règles clés
-- Aucun nettoyage serveur global
-- Aucun impact sur les autres stacks
-- Toute ressource est préfixée PROJECT_ID
+## Traefik
+Deux modes supportés :
+- Traefik embarqué dans la stack
+- Traefik externe mutualisé
 
-## Ce que v6.7 FAIT
-- Installer une stack BlueGreen autonome
-- Gérer backup / switch / update
-- Préparer le multi-stack
+Les deux sont supportés **sans hypothèse serveur vierge**.
 
-## Ce que v6.7 NE FAIT PAS
-- Multi-site automatique
-- Cockpit graphique
-- Nettoyage agressif serveur
+## Ce qui a échoué en v7 (et est désormais interdit)
+- Nettoyage serveur global
+- Suppression Docker non ciblée
+- Reconfiguration SSH
+- Hypothèse “serveur vierge permanent”
+
+## Contrainte clé multi-BlueGreen
+Un serveur peut héberger **N stacks BlueGreen**.
+
+Conséquence directe :
+- Aucun script ne doit impacter autre chose que son PROJECT_ID
+- Le ménage global est interdit
+- Le ménage doit être **conditionnel et ciblé**
+
+## Rôle de global.conf
+global.conf est la **seule source de vérité**.
+Les scripts exécutent.  
+Ils ne décident jamais.
