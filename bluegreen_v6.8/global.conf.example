@@ -1,0 +1,25 @@
+###############################################
+# GLOBAL CONFIGURATION — BLUEGREEN ORCHESTRATOR v6.8
+# PRODUIT / INFRA ONLY
+###############################################
+
+# =============================================
+# IDENTITÉ PRODUIT
+# =============================================
+PROJECT_ID="demo"
+
+# =============================================
+# MODE D’INSTALLATION (OBLIGATOIRE)
+# =============================================
+INSTALL_MODE="PROJET_UNIQUE"   # SERVER_NEUF | PROJET_UNIQUE | MULTI_PROJETS
+
+# =============================================
+# TLS / LET’S ENCRYPT
+# =============================================
+LETS_ENCRYPT_EMAIL="contact@example.com"
+
+# =============================================
+# DEBUG PRODUIT (STRICTEMENT ENCADRÉ)
+# =============================================
+DEBUG_INTERACTIVE="false"
+

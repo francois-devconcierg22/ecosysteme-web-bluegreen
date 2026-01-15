@@ -1,0 +1,24 @@
+###############################################
+# SITE CONFIGURATION — BLUEGREEN v6.8
+###############################################
+
+SITE_KEY="conciergerie"
+
+PRIMARY_DOMAIN="conciergeriesejourdouest.fr"
+
+# ---------------------------------------------
+# WORDPRESS (OPTIONNEL — MODULE)
+# ---------------------------------------------
+ENABLE_WORDPRESS="true"
+
+WP_DOMAIN="conciergeriesejourdouest.fr"
+WP_ENV="production"
+WP_DEBUG="false"
+WP_TABLE_PREFIX="wp_"
+
+DB_NAME="wordpress"
+DB_USER="wp_user"
+
+WP_ADMIN_USER="admin"
+WP_ADMIN_EMAIL="contact@example.com"
+
